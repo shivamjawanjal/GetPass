@@ -210,7 +210,7 @@ function SiteHeader({ dashboardPath }) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto flex h-16 w-full max-w-[1680px] items-center justify-between gap-4 px-4 sm:px-8 lg:px-12 xl:px-16">
         <Link to="/" className={`flex items-center gap-3 rounded-md ${focusRing}`}>
           <BrandMark />
           <span className="flex flex-col">
@@ -288,13 +288,13 @@ function SiteHeader({ dashboardPath }) {
 function Hero({ dashboardPath }) {
   return (
     <section className="border-b border-slate-200 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:items-start lg:gap-12 lg:px-10 lg:py-16">
-        <div className="lg:col-span-6 lg:pt-3">
+      <div className="mx-auto grid w-full max-w-[1680px] gap-10 px-4 py-12 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-12 lg:py-16 xl:gap-16 xl:px-16">
+        <div className="lg:col-span-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">{HERO_COPY.eyebrow}</p>
-          <h1 className="mt-4 max-w-xl text-3xl font-semibold leading-[1.14] tracking-tight text-slate-900 sm:text-4xl lg:text-[44px]">
+          <h1 className="mt-4 max-w-2xl text-3xl font-semibold leading-[1.12] tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             {HERO_COPY.headline}
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-7 text-slate-600">{HERO_COPY.description}</p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">{HERO_COPY.description}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -342,7 +342,7 @@ function Hero({ dashboardPath }) {
 function WorkflowSection() {
   return (
     <section id="how-it-works" className="border-b border-slate-200 bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto w-full max-w-[1680px] px-4 sm:px-8 lg:px-12 xl:px-16">
         <SectionHeading
           eyebrow="How it works"
           title="From leave request to logged exit"
@@ -380,7 +380,7 @@ function WorkflowSection() {
 function RolesSection() {
   return (
     <section id="roles" className="bg-slate-50 py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto w-full max-w-[1680px] px-4 sm:px-8 lg:px-12 xl:px-16">
         <SectionHeading
           eyebrow="Built for the whole process"
           title="One system for each desk involved"
@@ -399,7 +399,7 @@ function RolesSection() {
 function GateChecksSection() {
   return (
     <section id="gate-checks" className="border-t border-slate-200 bg-white py-16 sm:py-20">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
+      <div className="mx-auto grid w-full max-w-[1680px] items-center gap-10 px-4 sm:px-8 lg:grid-cols-2 lg:gap-14 lg:px-12 xl:px-16">
         <div>
           <SectionHeading
             eyebrow={GATE_CHECKS.eyebrow}
@@ -424,7 +424,7 @@ function GateChecksSection() {
 function CallToAction({ dashboardPath }) {
   return (
     <section className="border-t border-slate-200 bg-slate-50 py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto w-full max-w-[1680px] px-4 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex flex-col gap-6 rounded-lg border border-slate-200 bg-white p-8 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-10">
           <div className="max-w-2xl">
             <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
@@ -450,7 +450,7 @@ function CallToAction({ dashboardPath }) {
 function SiteFooter({ dashboardPath }) {
   return (
     <footer className="border-t border-slate-800 bg-slate-950">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
+      <div className="mx-auto w-full max-w-[1680px] px-4 py-10 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex flex-col gap-8 border-b border-slate-800 pb-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-start gap-3">
             <BrandMark compact />
