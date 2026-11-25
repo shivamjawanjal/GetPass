@@ -66,9 +66,12 @@ function RequestPreviewCard() {
           <FileText className="h-4 w-4 text-orange-700" />
           <span className="text-sm font-semibold text-slate-900">{REQUEST_PREVIEW.title}</span>
         </div>
-        <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">
-          {REQUEST_PREVIEW.status}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Stage 1</span>
+          <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-700">
+            {REQUEST_PREVIEW.status}
+          </span>
+        </div>
       </div>
 
       <div className="flex items-center justify-between px-5 pt-4 text-[11px] font-medium uppercase tracking-wide text-slate-500">
@@ -76,18 +79,18 @@ function RequestPreviewCard() {
         <span className="font-mono tracking-normal text-slate-600">{REQUEST_PREVIEW.reference}</span>
       </div>
 
-      <dl className="grid grid-cols-1 gap-x-6 gap-y-4 px-5 py-4 sm:grid-cols-2">
+      <dl className="grid grid-cols-1 gap-x-6 gap-y-3.5 px-5 py-3.5 sm:grid-cols-2">
         {REQUEST_PREVIEW.fields.map((field) => (
           <div key={field.label}>
             <dt className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{field.label}</dt>
-            <dd className="mt-1 text-sm text-slate-800">{field.value}</dd>
+            <dd className="mt-0.5 text-sm font-medium text-slate-800">{field.value}</dd>
           </div>
         ))}
       </dl>
 
-      <div className="border-t border-slate-200 bg-slate-50 px-5 py-4">
+      <div className="border-t border-slate-200 bg-slate-50 px-5 py-3.5">
         <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Request timeline</p>
-        <ol className="mt-3 space-y-3">
+        <ol className="mt-2.5 space-y-2.5">
           {REQUEST_PREVIEW.timeline.map((item) => (
             <li key={item.title} className="flex items-start gap-3">
               <TimelineDot state={item.state} />
@@ -111,22 +114,25 @@ function GatePreviewCard() {
           <ScanLine className="h-4 w-4 text-orange-700" />
           <span className="text-sm font-semibold text-slate-900">{GATE_PREVIEW.title}</span>
         </div>
-        <span className="rounded-md border border-orange-200 bg-orange-50 px-2 py-1 text-[11px] font-semibold text-orange-800">
-          {GATE_PREVIEW.result}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-orange-700">Stage 2</span>
+          <span className="rounded-md border border-orange-200 bg-orange-50 px-2 py-0.5 text-[11px] font-semibold text-orange-800">
+            {GATE_PREVIEW.result}
+          </span>
+        </div>
       </div>
 
-      <dl className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <dl className="mt-3.5 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {GATE_PREVIEW.rows.map((row) => (
           <div key={row.label}>
             <dt className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{row.label}</dt>
-            <dd className="mt-1 text-xs font-medium text-slate-800">{row.value}</dd>
+            <dd className="mt-0.5 text-xs font-semibold text-slate-800">{row.value}</dd>
           </div>
         ))}
       </dl>
 
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[11px] text-slate-500">
-        <span className="font-mono">{GATE_PREVIEW.reference}</span>
+      <div className="mt-3.5 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[11px] text-slate-500">
+        <span className="font-mono text-slate-600">{GATE_PREVIEW.reference}</span>
         <span>{GATE_PREVIEW.footer}</span>
       </div>
     </div>
@@ -152,21 +158,32 @@ function RoleCard({ role }) {
 }
 
 function AuditCard() {
+  const statusBadgeStyles = {
+    Valid: 'border-orange-200 bg-orange-50 text-orange-800',
+    Approved: 'border-slate-300 bg-slate-100 text-slate-800',
+    Pending: 'border-slate-200 bg-white text-slate-600',
+  };
+
   return (
     <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center gap-2 border-b border-slate-200 px-5 py-3">
-        <Clock3 className="h-4 w-4 text-orange-700" />
-        <span className="text-sm font-semibold text-slate-900">Recent gate activity</span>
+      <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3">
+        <div className="flex items-center gap-2">
+          <Clock3 className="h-4 w-4 text-orange-700" />
+          <span className="text-sm font-semibold text-slate-900">Recent gate activity</span>
+        </div>
+        <span className="text-[11px] font-medium text-slate-500">Live campus log</span>
       </div>
       <div className="divide-y divide-slate-200">
         {AUDIT_ROWS.map((row) => (
-          <div key={`${row.time}-${row.student}`} className="grid grid-cols-[64px_1fr_auto] items-center gap-3 px-5 py-3">
+          <div key={`${row.time}-${row.student}`} className="grid grid-cols-[64px_1fr_auto] items-center gap-3 px-5 py-3.5">
             <span className="font-mono text-[11px] text-slate-500">{row.time}</span>
             <div>
               <p className="text-xs font-medium text-slate-800">{row.student}</p>
               <p className="text-[11px] text-slate-500">{row.action}</p>
             </div>
-            <span className="rounded border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-600">
+            <span
+              className={`rounded-md border px-2 py-0.5 text-[11px] font-medium ${statusBadgeStyles[row.status] || 'border-slate-200 bg-slate-50 text-slate-600'}`}
+            >
               {row.status}
             </span>
           </div>
@@ -193,7 +210,7 @@ function SiteHeader({ dashboardPath }) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
         <Link to="/" className={`flex items-center gap-3 rounded-md ${focusRing}`}>
           <BrandMark />
           <span className="flex flex-col">
@@ -271,13 +288,13 @@ function SiteHeader({ dashboardPath }) {
 function Hero({ dashboardPath }) {
   return (
     <section className="border-b border-slate-200 bg-white">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
-        <div>
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:items-start lg:gap-12 lg:px-10 lg:py-16">
+        <div className="lg:col-span-6 lg:pt-3">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">{HERO_COPY.eyebrow}</p>
-          <h1 className="mt-4 max-w-2xl text-4xl font-semibold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="mt-4 max-w-xl text-3xl font-semibold leading-[1.14] tracking-tight text-slate-900 sm:text-4xl lg:text-[44px]">
             {HERO_COPY.headline}
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-slate-600">{HERO_COPY.description}</p>
+          <p className="mt-4 max-w-xl text-base leading-7 text-slate-600">{HERO_COPY.description}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -295,10 +312,25 @@ function Hero({ dashboardPath }) {
             </a>
           </div>
 
-          <p className="mt-5 max-w-lg text-xs leading-5 text-slate-500">{HERO_COPY.note}</p>
+          <p className="mt-5 max-w-xl text-xs leading-5 text-slate-500">{HERO_COPY.note}</p>
+
+          <dl className="mt-8 grid grid-cols-1 gap-3 border-t border-slate-200 pt-6 sm:grid-cols-3">
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Requests</dt>
+              <dd className="mt-1 text-xs font-medium text-slate-800">Digital out-pass forms</dd>
+            </div>
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Approvals</dt>
+              <dd className="mt-1 text-xs font-medium text-slate-800">Hostel clerk review queue</dd>
+            </div>
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Verification</dt>
+              <dd className="mt-1 text-xs font-medium text-slate-800">Signed QR gate checks</dd>
+            </div>
+          </dl>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 lg:col-span-6">
           <RequestPreviewCard />
           <GatePreviewCard />
         </div>
@@ -307,10 +339,48 @@ function Hero({ dashboardPath }) {
   );
 }
 
+function WorkflowSection() {
+  return (
+    <section id="how-it-works" className="border-b border-slate-200 bg-white py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <SectionHeading
+          eyebrow="How it works"
+          title="From leave request to logged exit"
+          description="Three connected steps, with real-time status visible to everyone who needs it."
+        />
+        <ol className="mt-10 grid gap-6 md:grid-cols-3">
+          {WORKFLOW_STEPS.map((step, index) => {
+            const Icon = WORKFLOW_ICONS[index];
+            return (
+              <li
+                key={step.number}
+                className="flex flex-col rounded-lg border border-slate-200 bg-slate-50/70 p-5 sm:p-6"
+              >
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <span className="text-xs font-semibold tracking-[0.16em] text-orange-700">{step.number}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Step</span>
+                </div>
+                <h3 className="mt-4 text-base font-semibold text-slate-900">{step.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
+                <div className="mt-auto pt-5">
+                  <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-xs">
+                    <Icon className="h-3.5 w-3.5 text-slate-500" />
+                    {step.ui}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
 function RolesSection() {
   return (
     <section id="roles" className="bg-slate-50 py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <SectionHeading
           eyebrow="Built for the whole process"
           title="One system for each desk involved"
@@ -326,40 +396,10 @@ function RolesSection() {
   );
 }
 
-function WorkflowSection() {
-  return (
-    <section id="how-it-works" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="How it works"
-          title="From leave request to logged exit"
-          description="Three steps, with the status visible to everyone who needs it."
-        />
-        <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
-          {WORKFLOW_STEPS.map((step, index) => {
-            const Icon = WORKFLOW_ICONS[index];
-            return (
-              <li key={step.number} className="border-t-2 border-slate-900 pt-5">
-                <span className="text-xs font-semibold tracking-[0.16em] text-orange-700">{step.number}</span>
-                <h3 className="mt-3 text-base font-semibold text-slate-900">{step.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
-                <div className="mt-4 inline-flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700">
-                  <Icon className="h-3.5 w-3.5 text-slate-500" />
-                  {step.ui}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
 function GateChecksSection() {
   return (
-    <section id="gate-checks" className="border-y border-slate-200 bg-slate-50 py-16 sm:py-20">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+    <section id="gate-checks" className="border-t border-slate-200 bg-white py-16 sm:py-20">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
         <div>
           <SectionHeading
             eyebrow={GATE_CHECKS.eyebrow}
@@ -383,10 +423,10 @@ function GateChecksSection() {
 
 function CallToAction({ dashboardPath }) {
   return (
-    <section className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 rounded-lg border border-slate-200 bg-slate-50 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
-          <div className="max-w-xl">
+    <section className="border-t border-slate-200 bg-slate-50 py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div className="flex flex-col gap-6 rounded-lg border border-slate-200 bg-white p-8 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-10">
+          <div className="max-w-2xl">
             <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
               Use the campus portal
             </h2>
@@ -396,9 +436,9 @@ function CallToAction({ dashboardPath }) {
           </div>
           <Link
             to={dashboardPath || '/login'}
-            className={`inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800 ${focusRing}`}
+            className={`inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-orange-700 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-orange-800 ${focusRing}`}
           >
-            {dashboardPath ? 'Go to Dashboard' : 'Sign in'}
+            {dashboardPath ? 'Go to Dashboard' : 'Sign in to portal'}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -410,7 +450,7 @@ function CallToAction({ dashboardPath }) {
 function SiteFooter({ dashboardPath }) {
   return (
     <footer className="border-t border-slate-800 bg-slate-950">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
         <div className="flex flex-col gap-8 border-b border-slate-800 pb-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-start gap-3">
             <BrandMark compact />
@@ -464,8 +504,8 @@ const LandingPage = () => {
       <SiteHeader dashboardPath={dashboardPath} />
       <main className="flex-1">
         <Hero dashboardPath={dashboardPath} />
-        <RolesSection />
         <WorkflowSection />
+        <RolesSection />
         <GateChecksSection />
         <CallToAction dashboardPath={dashboardPath} />
       </main>
